@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-Vendor: Nuxeo
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 5.6
+Bundle-Name: ul2-custom-nuxeo-drive
+Nuxeo-Component: OSGI-INF/userworkspace-adapter-contrib.xml
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: ul2-custom-nuxeo-drive;singleton:=true
+Require-Bundle: org.nuxeo.drive.core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+

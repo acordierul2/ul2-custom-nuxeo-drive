@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<component name="fr.univlille2.ecm.drive.adapters" version="1.0">
+
+	<!-- Make sure your contribution is registered after the default one -->
+	<require>org.nuxeo.drive.adapters</require>
+	<require>org.nuxeo.drive.service.FileSystemItemAdapterService</require>
+
+	<extension target="org.nuxeo.ecm.core.api.DocumentAdapterService"
+		point="adapters">
+		<adapter class="org.nuxeo.drive.adapter.FileSystemItem"
+			factory="org.nuxeo.drive.adapter.impl.FileSystemItemAdapterFactory" />
+	</extension>
+
+	<!-- Override the folderName parameter. No need to specify the class again 
+		as there can be only one topLevelFolderItemFactory. -->
+	<extension target="org.nuxeo.drive.service.FileSystemItemAdapterService"
+		point="topLevelFolderItemFactory">
+		<topLevelFolderItemFactory
+			class="fr.univlille2.ecm.drive.UserWorkspaceTopLevelFactory">
+			<parameters>
+				<parameter name="folderName">Nuxeo drive</parameter>
+			</parameters>
+		</topLevelFolderItemFactory>
+	</extension>
+
+
+	<extension target="org.nuxeo.drive.service.FileSystemItemAdapterService"
+		point="fileSystemItemFactory">
+		<fileSystemItemFactory name="defaultSyncRootFolderItemFactory"
+			enabled="false" />
+		<fileSystemItemFactory name="ul2SyncRootFolderItemFactory"
+			order="10" facet="DriveSynchronized"
+			class="fr.univlille2.ecm.drive.UserWorkspaceTopLevelFactory" />
+		<fileSystemItemFactory name="defaultFileSystemItemFactory">
+			<parameters>
+				<parameter name="versioningOption">MINOR</parameter>
+			</parameters>
+		</fileSystemItemFactory>
+
+	</extension>
+</component>
